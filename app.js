@@ -17,8 +17,15 @@ const socketIO = require('socket.io')
 const io = socketIO(server)
 
 let personas_conectadas = 1
-io.on('connection', (socket) => {
-    console.log("Alguien se conectó...")
+io.on('connection', socket => {
+    console.log(`id: ${socket.id}`)
+
+    /* al fin funciona enviar un mensaje privado al id de un usuario ;-) */
+    io.to(socket.id).emit('hola', {
+        mensaje: "estoy probando",
+        edad: 20
+    })
+
     socket.emit('saludo', {
         personas: `Personas conectadas: ${personas_conectadas}`
     })
@@ -31,10 +38,10 @@ io.on('connection', (socket) => {
         })
         /* Mostrar que está escribe */
     socket.on('escribiendo', (data) => {
-        console.log(data)
-        socket.broadcast.emit('escribiendo', data)
-    })
-
+            console.log(data)
+            socket.broadcast.emit('escribiendo', data)
+        })
+        /* Si se desconecta alguien lo mostrará */
     socket.on('disconnect', () => {
         personas_conectadas--
         socket.broadcast.emit('saludo', {
