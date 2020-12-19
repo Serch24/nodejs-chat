@@ -4,28 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Chat</title>
 </head>
 
 <body>
-    <h1>Chat</h1>
     <div class="contenedor">
-        <div class="input">
-            <div class="online"></div>
-            <div class="escribir"></div>
+        <nav>
+            <div class="escribiendo"></div>
             <input type="text" id="nombre" placeholder="Nombre">
-            <input type="text" id="texto" placeholder="escribe algo...">
-            <input type="file" name="formu" id="formu">
-            <button class="enviar">Enviar</button>
-            <div class="repe"></div>
-        </div>
-        <div class="chats">
-
-        </div>
-
+        </nav>
+        <section>
+            <div class="mensajes">
+                <p>Holaaaaaaaaaaaa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, accusamus! Eum minus, ipsum nemo suscipit in possimus cumque esse temporibus delectus consectetur vitae. Laborum aliquam maiores illum illo quas accusamus?
+                    lor ahahahahahahaaaaa
+                </p>
+            </div>
+            <div class="mensajes-propios">
+                <p>mis mensajes son caca</p>
+            </div>
+        </section>
+        <footer>
+            <input type="text" id="mensaje" placeholder="Escribe algo...">
+        </footer>
     </div>
-
 
 
     <script src="/socket.io/socket.io.js"></script>

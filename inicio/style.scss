@@ -1,81 +1,80 @@
+$bg-color: #2f0f7ac7;
+$vh: 7vh;
+@mixin parrafo {
+    color: #fcf8f7;
+    letter-spacing: .5px;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0 5px 0 5px;
+    text-align: center;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
     padding: 0;
 }
 
-h1 {
-    text-align: center;
-}
-
-p {
-    margin-bottom: 10px;
-}
-
 .contenedor {
     display: flex;
-    background-color: rgb(201, 245, 245);
-    min-height: 100vh;
-    justify-content: space-around;
-    align-items: center;
-    .input {
+    flex-direction: column;
+    height: 100vh;
+    nav {
+        background-color: #FA9937;
+        height: $vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .escribiendo {
+            width: 50%;
+            height: 5vh;
+            background-color: rgba(173, 146, 146, 0.61);
+        }
+        input {
+            padding: 2px;
+        }
+    }
+    section {
+        height: 100vh - $vh;
+        background-color: $bg-color;
+        overflow-y: scroll;
         display: flex;
         flex-direction: column;
-        .escribir{
-            width: 300px;
-            height: 100px;
-            background-color: rgba(182, 212, 238, 0.541);
-            margin-bottom: 10px;
-        }
-        input[type="text"] {
-            display: block;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        .enviar {
-            padding: 5px;
-        }
-        .repe{
-            width: 300px;
-            height: 200px;
-            margin-top: 10px;
-            background-color: rgba(172, 221, 205, 0.692);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            span{
-                color: black;
-                font-weight: 900;
+        .mensajes {
+            max-width: 60vw;
+            background-color: rgba(173, 146, 146, 0.61);
+            margin: 10px 0 10px 10px;
+            p {
+                @include parrafo();
             }
         }
-        .online{
-            min-width: 140px;
-            height: 50px;
-            background-color: rgba(161, 145, 120, 0.527);
-            margin-bottom: 20px;
-            display: block;
-        }
-        #formu{
-            margin-bottom: 10px;
+        .mensajes-propios {
+            max-width: 50vw;
+            background-color: rgba(173, 146, 146, 0.61);
+            align-self: flex-end;
+            overflow-wrap: break-word;
+            margin-right: 10px;
+            p {
+                @include parrafo();
+            }
         }
     }
-    .chats {
-        width: 400px;
-        height: 90vh;
-        background-color: rgba(221, 205, 186, 0.712);
-        overflow-y: scroll;
-    }
-}
-
-@media(max-width:500px) {
-    .contenedor {
-        flex-direction: column;
-        .input {
-            order: 2;
+    footer {
+        height: $vh;
+        background-color: thistle;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &::after {
+            content: '\f1d8';
+            font-family: 'Font Awesome 5 Free';
+            cursor: pointer;
+            font-size: 2rem;
+            margin: 0 5px 0 5px;
         }
-        .chats {
-            height: 300px;
-            overflow-y: scroll;
+        input {
+            width: 90vw;
+            padding: 10px;
+            margin-left: 10px;
         }
     }
 }
