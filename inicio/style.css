@@ -62,7 +62,7 @@
   color: #fcf8f7;
   letter-spacing: .5px;
   font-family: 'Roboto Mono', monospace;
-  margin: 0 5px 0 5px;
+  margin: 0 5px 5px 5px;
   text-align: center;
 }
 
@@ -79,7 +79,7 @@
   color: #fcf8f7;
   letter-spacing: .5px;
   font-family: 'Roboto Mono', monospace;
-  margin: 0 5px 0 5px;
+  margin: 0 5px 5px 5px;
   text-align: center;
 }
 
@@ -97,8 +97,7 @@
           align-items: center;
 }
 
-.contenedor footer::after {
-  content: '\f1d8';
+.contenedor footer i {
   font-family: 'Font Awesome 5 Free';
   cursor: pointer;
   font-size: 2rem;

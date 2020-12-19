@@ -21,15 +21,15 @@ io.on('connection', socket => {
     console.log(`id: ${socket.id}`)
 
     /* al fin funciona enviar un mensaje privado al id de un usuario ;-) */
-    io.to(socket.id).emit('hola', {
-        mensaje: "estoy probando",
-        edad: 20
+    socket.on("mensajePrivado", data => {
+        io.to(socket.id).emit('mensajePrivado', data)
     })
 
-    socket.emit('saludo', {
+    socket.emit('personas', {
         personas: `Personas conectadas: ${personas_conectadas}`
     })
     personas_conectadas++
+
     /* Mostrar mensaje a todos */
     socket.on(("mensaje"), (data) => {
             console.log(data)

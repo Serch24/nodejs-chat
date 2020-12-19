@@ -1,12 +1,12 @@
 const socket = io()
-const enviar = document.querySelector(".enviar")
-const texto = document.querySelector("#texto")
+const enviar = document.querySelector("i")
+const texto = document.querySelector("#mensaje")
 const nombre = document.querySelector("#nombre")
-const chats = document.querySelector(".chats")
-const escribiendo = document.querySelector(".escribir")
-const repe = document.querySelector(".repe")
-const personas_online = document.querySelector(".online")
-const formu = document.querySelector("#formu")
+const chats = document.querySelector("section")
+const escribiendo = document.querySelector(".escribiendo")
+const texto_propio = document.querySelector(".mensajes-propios")
+    //const repe = document.querySelector(".repe")
+    //const personas_online = document.querySelector(".online")
 let letras = [];
 let contador = 0
 enviar.addEventListener("click", () => {
@@ -15,46 +15,44 @@ enviar.addEventListener("click", () => {
             nombre: nombre.value,
             texto: texto.value
         })
+        socket.emit('mensajePrivado', {
+            nombre: nombre.value,
+            texto: texto.value
+        })
     }
 })
 
-socket.on('hola', (data) => {
-    console.log(data)
+socket.on('mensajePrivado', (data) => {
+    chats.innerHTML += `<div class='mensajes-propios'><p>${data.texto}</p></div>`
 })
 
 socket.on('mensaje', (data) => {
-    contador++
-    if (contador >= 3) {
-        if (letras.includes(data.texto)) {
-            repe.innerHTML = `<p><span>Palabra repetida</span>: ${data.texto}</p>`
-        } else {
-            letras.push(data.texto)
-            chats.innerHTML += `<h3>${data.nombre}: </h3><p>$ ${data.texto}</p>`
-        }
-    } else {
-        letras.push(data.texto)
-        chats.innerHTML += `<h3>${data.nombre}: </h3><p>$ ${data.texto}</p>`
-    }
+    chats.innerHTML += `<div class='mensajes'><p> ${data.texto}</p></div>`
     texto.value = ""
 })
 
-socket.on('saludo', (data) => {
-    personas_online.innerHTML = `${data.personas}`
+socket.on('personas', (data) => {
+    escribiendo.innerHTML = `${data.personas}`
 })
 
 texto.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) {
-            socket.emit('mensaje', {
-                nombre: nombre.value,
-                texto: texto.value
-            })
-        }
-        socket.emit("escribiendo", {
+    if (e.keyCode == 13) {
+        socket.emit('mensaje', {
             nombre: nombre.value,
-            escribir: true
+            texto: texto.value
         })
+        socket.emit('mensajePrivado', {
+            nombre: nombre.value,
+            texto: texto.value
+        })
+    }
+    socket.emit("escribiendo", {
+        nombre: nombre.value,
+        escribir: true
     })
-    /* Cuando deje de escribir envia un objeto */
+})
+
+/* Cuando deje de escribir envia un objeto */
 texto.addEventListener("keyup", () => {
     socket.emit("escribiendo", {
         nombre: nombre.value,
@@ -65,8 +63,10 @@ texto.addEventListener("keyup", () => {
 
 socket.on('escribiendo', (data) => {
     if (data.escribir) {
-        escribiendo.innerHTML = `${data.nombre} está escribiendo tonterias...`
+        escribiendo.innerHTML = `${data.nombre} está escribiendo...`
     } else {
-        escribiendo.innerHTML = ` `
+        setTimeout(() => {
+            escribiendo.innerHTML = ""
+        }, 3000)
     }
 })

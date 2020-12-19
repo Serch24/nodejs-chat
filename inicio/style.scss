@@ -4,7 +4,7 @@ $vh: 7vh;
     color: #fcf8f7;
     letter-spacing: .5px;
     font-family: 'Roboto Mono', monospace;
-    margin: 0 5px 0 5px;
+    margin: 0 5px 5px 5px;
     text-align: center;
 }
 
@@ -64,8 +64,7 @@ $vh: 7vh;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        &::after {
-            content: '\f1d8';
+        i {
             font-family: 'Font Awesome 5 Free';
             cursor: pointer;
             font-size: 2rem;
