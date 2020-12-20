@@ -25,9 +25,13 @@ $vh: 7vh;
         align-items: center;
         justify-content: space-around;
         .escribiendo {
-            width: 50%;
-            height: 5vh;
+            width: 50vw;
+            height: 6vh;
             background-color: rgba(173, 146, 146, 0.61);
+            p {
+                font-family: 'Roboto Mono', monospace;
+                font-size: 1rem;
+            }
         }
         input {
             padding: 2px;
@@ -45,6 +49,10 @@ $vh: 7vh;
             margin: 10px 0 10px 10px;
             p {
                 @include parrafo();
+                span {
+                    font-weight: bold;
+                    color: black;
+                }
             }
         }
         .mensajes-propios {

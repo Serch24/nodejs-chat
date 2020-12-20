@@ -24,15 +24,15 @@ enviar.addEventListener("click", () => {
 
 socket.on('mensajePrivado', (data) => {
     chats.innerHTML += `<div class='mensajes-propios'><p>${data.texto}</p></div>`
-})
-
-socket.on('mensaje', (data) => {
-    chats.innerHTML += `<div class='mensajes'><p> ${data.texto}</p></div>`
     texto.value = ""
 })
 
+socket.on('mensaje', (data) => {
+    chats.innerHTML += `<div class='mensajes'><p><span>${data.nombre}:</span> ${data.texto}</p></div>`
+})
+
 socket.on('personas', (data) => {
-    escribiendo.innerHTML = `${data.personas}`
+    escribiendo.innerHTML = `<p>${data.personas}</p>`
 })
 
 texto.addEventListener("keydown", (e) => {

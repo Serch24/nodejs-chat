@@ -33,8 +33,7 @@ io.on('connection', socket => {
     /* Mostrar mensaje a todos */
     socket.on(("mensaje"), (data) => {
             console.log(data)
-            io.sockets.emit('mensaje', data)
-
+            socket.broadcast.emit('mensaje', data)
         })
         /* Mostrar que está escribe */
     socket.on('escribiendo', (data) => {

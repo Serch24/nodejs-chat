@@ -30,9 +30,14 @@
 }
 
 .contenedor nav .escribiendo {
-  width: 50%;
-  height: 5vh;
+  width: 50vw;
+  height: 6vh;
   background-color: rgba(173, 146, 146, 0.61);
+}
+
+.contenedor nav .escribiendo p {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
 }
 
 .contenedor nav input {
@@ -64,6 +69,11 @@
   font-family: 'Roboto Mono', monospace;
   margin: 0 5px 5px 5px;
   text-align: center;
+}
+
+.contenedor section .mensajes p span {
+  font-weight: bold;
+  color: black;
 }
 
 .contenedor section .mensajes-propios {
